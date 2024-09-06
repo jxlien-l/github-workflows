@@ -1,0 +1,32 @@
+SECRETS :
+  FTP_FOLDER : Can be / if you set your FTP user directly in the right folder.
+               Otherwise you can set a specific folder.
+-------------------------------------------------------------------------------
+name: Deploy Private GitHub repository to cPanel
+on:
+  push:
+    branches:
+      - main
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ${{ secrets.FTP_FOLDER }}
+        exclude: |
+          **/.git*
+          **/.git*/**
+          /.vscode/**
+          .gitignore
+          docker-compose.yml
