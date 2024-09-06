@@ -1,7 +1,7 @@
-SECRETS :
-  FTP_FOLDER : Can be / if you set your FTP user directly in the right folder.
-               Otherwise you can set a specific folder.
--------------------------------------------------------------------------------
+# SECRETS :
+#  FTP_FOLDER : Can be / if you set your FTP user directly in the right folder.
+#               Otherwise you can set a specific folder.
+# -------------------------------------------------------------------------------
 name: Deploy Private GitHub repository to cPanel
 on:
   push:
